@@ -1,0 +1,6 @@
+FROM openjdk:8-jdk-alpine
+RUN addgroup -S boot && adduser -S boot -G boot
+USER boot:boot
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} service.jar
+ENTRYPOINT ["java","-jar","/service.jar"]
